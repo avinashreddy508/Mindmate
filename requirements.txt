@@ -4,7 +4,7 @@
 pip==24.0
 streamlit
 configparser
-##snowflake-snowpark-python==1.23.0
+snowflake-snowpark-python
 ##snowflake-connector-python
 transformers
 tf-keras
