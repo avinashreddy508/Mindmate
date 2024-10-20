@@ -1,7 +1,7 @@
 
 ### requirements.txt
 
-pip --upgrade
+pip==24.0
 streamlit==1.25.0
 configparser==5.3.0
 snowflake-snowpark-python==1.14.0
