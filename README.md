@@ -1,4 +1,4 @@
-# Emotion-Aware Chat Assistant - Leveraging AI for Enhancing Urban Health Cognitive Behavioral Therapy (CBT)
+# MindMate Chat Assistant - Leveraging AI for Enhancing Urban Health Cognitive Behavioral Therapy (CBT)
 This application is a chatbot built with Streamlit that integrates **Snowflake Cortex** for generating responses and **Cognitive Behavioral Therapy (CBT)** techniques based on detected user emotions. It also includes emotion analysis using a **Hugging Face Transformer model** to provide mental health support. The app offers a dynamic and interactive UI to enhance the user experience.
 
 ## Features
