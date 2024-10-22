@@ -1,5 +1,4 @@
 import streamlit as st
-import pandas as pd
 from helpers.snowflake_helper import create_session, query_available_docs, complete_response
 from helpers.chat_helper import initialize_messages, configure_options
 
