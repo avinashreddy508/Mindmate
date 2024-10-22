@@ -1,7 +1,6 @@
 import streamlit as st
 import configparser
 from snowflake.snowpark import Session
-from helpers.emotion_helper import analyze_emotion, get_cbt_techniques
 from helpers.chat_helper import initialize_messages, configure_options, get_chat_history
 
 # Default Configuration
@@ -27,13 +26,8 @@ def complete_response(session, question, rag):
 
     prompt, url_link, relative_path = create_prompt(session, question, rag)
     response = session.sql("SELECT snowflake.cortex.complete(?, ?)", params=[st.session_state.model_name, prompt]).collect()
-    user_emotion, score = analyze_emotion(question)
-    # Append relevant CBT technique to the response
-    #cbt_response = get_cbt_techniques(user_emotion, score)
-    #complete_response_text = f"{response[0]['SNOWFLAKE.CORTEX.COMPLETE(?, ?)']}\n\n**CBT Suggestion:** {cbt_response}"
 
     return response[0]['SNOWFLAKE.CORTEX.COMPLETE(?, ?)'], url_link, relative_path
-    #return complete_response_text, url_link, relative_path
 
 def create_prompt(session, question, rag):
     """Create the prompt used to query the Snowflake LLM, with or without RAG."""
@@ -76,5 +70,3 @@ def get_similar_chunks(session, question):
     df_chunks = session.sql(query, params=[question, num_chunks]).to_pandas()
     similar_chunks = "".join([df_chunks._get_value(i, 'CHUNK') for i in range(len(df_chunks) - 1)])
     return similar_chunks.replace("'", ""), df_chunks._get_value(0, 'RELATIVE_PATH')
-    #similar_chunks = "".join([df_chunks.iloc[i]['CHUNK'] for i in range(len(df_chunks))])
-    #return similar_chunks, df_chunks.iloc[0]['RELATIVE_PATH']
