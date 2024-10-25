@@ -1,13 +1,10 @@
-# MindMate Chat Assistant - Leveraging AI for Enhancing Urban Health Cognitive Behavioral Therapy (CBT)
-This application is a chatbot built with Streamlit that integrates **Snowflake Cortex** for generating responses and **Cognitive Behavioral Therapy (CBT)** techniques based on detected user emotions. It also includes emotion analysis using a **Hugging Face Transformer model** to provide mental health support. The app offers a dynamic and interactive UI to enhance the user experience.
+# MindMate Chat Assistant - Leveraging AI for Enhancing Urban Health 
+This application is a chatbot built with Streamlit that integrates **Snowflake Cortex** for generating responses and **Cognitive Behavioral Therapy (CBT)**  The app offers a dynamic and interactive UI to enhance the user experience.
 
 ## Features
 
 - **Snowflake Cortex Integration**: Query Snowflake LLM for response generation.
-- **Emotion Analysis**: Detect user emotions using the `bhadresh-savani/distilbert-base-uncased-emotion` model from Hugging Face.
-- **CBT Suggestions**: Provide specific CBT techniques based on detected emotions or fallback to default suggestions for neutral/low-confidence emotions.
 - **Document Querying**: Option to retrieve relevant document chunks from Snowflake storage.
-- **Emotion Graphs**: Visualize emotions detected over time using Matplotlib.
 - **Interactive UI**: Tabs, checkboxes, and expanders for a clean and dynamic user interface.
 
 ## Installation
@@ -55,7 +52,6 @@ This application is a chatbot built with Streamlit that integrates **Snowflake C
 
 ## Configuration Options
 
-- **Emotion Threshold**: Adjust the emotion confidence threshold via a slider in the sidebar. CBT techniques are suggested only for emotions that meet this threshold.
 - **Remember Chat History**: Option to retain previous conversation context for enhanced response accuracy.
 - **Debug Mode**: Enable debug mode to view summaries of chat history and queries generated for document searches.
 
@@ -66,8 +62,6 @@ This application is a chatbot built with Streamlit that integrates **Snowflake C
 ├── app.py                      # Main application file
 ├── helpers
 │   ├── snowflake_helper.py      # Snowflake connection and query helpers
-│   ├── emotion_helper.py        # Emotion analysis and CBT handling
-│   ├── plotting_helper.py       # Functions for plotting emotion graphs
 │   ├── chat_helper.py           # Chat state and configuration utilities
 ├── requirements.txt             # Python dependencies
 ├── README.md                    # Project documentation
