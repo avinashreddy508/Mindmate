@@ -57,6 +57,7 @@ def main():
             message_placeholder = st.empty()
             sanitized_question = user_question.replace("'", "")
             with st.spinner(f"{st.session_state.model_name} is thinking..."):
+                response = "Sorry, I couldn't process your request."
                 try:
                     response, url_link, relative_path = complete_response(session, sanitized_question, rag)
                     message_placeholder.markdown(response)
