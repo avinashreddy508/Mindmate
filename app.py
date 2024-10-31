@@ -1,6 +1,9 @@
 import streamlit as st
 from helpers.snowflake_helper import create_session, query_available_docs, complete_response
 from helpers.chat_helper import initialize_messages, configure_options
+from snowflake.connector.errors import ProgrammingError
+from snowflake.snowpark.exceptions import SnowparkSessionException,SnowparkSQLException, SnowparkClientException
+
 
 st.set_page_config(
     page_title="MindMate App",
@@ -54,11 +57,15 @@ def main():
             message_placeholder = st.empty()
             sanitized_question = user_question.replace("'", "")
             with st.spinner(f"{st.session_state.model_name} is thinking..."):
-                response, url_link, relative_path = complete_response(session, sanitized_question, rag)
-                message_placeholder.markdown(response)
+                try:
+                    response, url_link, relative_path = complete_response(session, sanitized_question, rag)
+                    message_placeholder.markdown(response)
 
-                if rag:
-                    st.markdown(f"Link to [{relative_path}]({url_link})")
+                    if rag:
+                        st.markdown(f"Link to [{relative_path}]({url_link})")
+                except (ProgrammingError, SnowparkSessionException,SnowparkSQLException) as e:
+                     st.error("Warehouse is suspended . Please reach out for assistance or demo."
+                        "Contact: avinashreddy508@gmail.com.")
 
         # Store the assistant's response and emotion analysis in the session history
         st.session_state.messages.append({"role": "assistant", "content": response})
